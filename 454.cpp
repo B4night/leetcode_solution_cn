@@ -32,7 +32,7 @@ public:
                 if (m1.count(-(c + d)))
                     ans += m1[-c-d];
             }
-        reutrn ans;
+        return ans;
     }
 };
 
