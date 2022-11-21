@@ -3,7 +3,7 @@ leetcode题解
 
 Readme中会介绍比较tricky的做法.
 
-## reverse the string
+## reverse
 
 ### [翻转字符串中单词](https://leetcode.cn/problems/reverse-words-in-a-string/)
 
@@ -28,3 +28,35 @@ Readme中会介绍比较tricky的做法.
 3. 翻转str, `str = "defghabc"`
 
 此时空间复杂度降为O(1)
+
+## 队列
+
+### [滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum)
+
+思路: 使用优先队列, 元素为值和坐标组成的`pair`, 在将最大值存储到`vector<int> ans`中时需要先检验最大值的坐标是否合法
+
+``` cpp
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        // 使用优先队列
+        priority_queue<pair<int, int>> pq;  //pair的第一个元素存值, 第二个元素存坐标
+        vector<int> ans;
+        int idx = 0;
+        for (; idx < k; idx++) {
+            pq.push({nums[idx], idx});
+        } 
+        ans.push_back(pq.top().first);	// 先处理nums[0, k)
+
+        for (; idx < nums.size(); idx++) {	// 处理nums[k, len)
+            pq.push({nums[idx], idx});
+            while (pq.top().second < idx - k + 1) {	// 从优先队列中去掉不合法的最大值
+                pq.pop();
+            }
+            ans.push_back(pq.top().first);
+        }
+        return ans;
+    }
+};
+```
+
