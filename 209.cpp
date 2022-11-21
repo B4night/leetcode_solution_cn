@@ -7,7 +7,6 @@ public:
         int hi = 0;
         int cnt = (1 << 30);
 
-        sort(nums.begin(), nums.end());
         int cur = 0;
         while (hi < nums.size()) {
             cur += nums[hi];
