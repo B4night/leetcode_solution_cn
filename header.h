@@ -22,6 +22,10 @@ TreeNode* initTree(vector<int> v) {     // 根据v的元素建树,建树规则�
     int len = v.size();
     vector<TreeNode*> nodes(len, nullptr);
     for (int i = len - 1; i >= 0; i--) {
+        if (v[i] == INT_MAX) {
+            nodes[i] = nullptr;
+            continue;
+        }
         nodes[i] = new TreeNode(v[i]);
         if (2 * i + 1 < len) {
             nodes[i]->left = nodes[(i << 1) + 1];

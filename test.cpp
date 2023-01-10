@@ -1,6 +1,14 @@
-#include "header.h"
+#include <iostream>
+using namespace std;
+
+class A {
+	virtual void func() {};
+};
+
+class B : public A {
+	virtual void func() {};
+};
 
 int main() {
-    auto root = initTree({1,2,3,4,5});
-    return 0;
+	cout << sizeof(A) << endl << sizeof(B) << endl;	
 }
